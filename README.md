@@ -10,7 +10,7 @@ After creating a browser(app runner) in the extension, you can find the `browser
 
 <img width="1920" height="175" alt="image" src="https://github.com/user-attachments/assets/548f76d5-9ec8-42d9-baba-ecee27fed440" />
 
-Add a Custom key mapping:
+Add a custom key mapping:
 
 ```
 map <v-openWith> sendToExtension id="openwith@darktrojan.net" raw
@@ -20,5 +20,5 @@ Add a custom search engine:
 ```
 _openWith: vimium://run1/openWith#data={"type":"openUrl","browser_id":"5","url":"$s"}
 ```
-Add as many variations you can.
+Add as many variations you want.
 
