@@ -2,6 +2,7 @@
 var browsers, icons, menu_contexts;
 var max_browser_id = 0;
 var max_icon_id = 0;
+const OPEN_URL = "openUrl"
 
 chrome.commands.onCommand.addListener(function(command) {
 	chrome.tabs.query({currentWindow: true, active: true}, tabs => {
@@ -339,4 +340,26 @@ chrome.storage.local.get({'menu_contexts': null, 'version': -1}, function({menu_
 			port.postMessage('ping');
 		});
 	});
+});
+
+
+// Messages sent with chrome.runtime.sendMessage (https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage) from external applications will be handle here.
+// ref: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessageExternal
+chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => {
+    if (!request) {
+        console.warn("No request in external message");
+        return;
+    }
+
+    const { type, browser_id, url } = request;
+    console.debug("Request from:", sender);
+
+    switch (type) {
+        case OPEN_URL:
+            open_browser(browser_id, url); 
+            return sendResponse("ok");
+        default:
+            console.warn("No handler for external type:", type);
+            return sendResponse("failure");
+    }
 });
