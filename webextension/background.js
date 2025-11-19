@@ -2,6 +2,7 @@
 var browsers, icons, menu_contexts;
 var max_browser_id = 0;
 var max_icon_id = 0;
+const GET_BROWSERS = "getBrowsers"
 const OPEN_URL = "openUrl"
 
 chrome.commands.onCommand.addListener(function(command) {
@@ -357,6 +358,9 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
     switch (type) {
         case OPEN_URL:
             open_browser(browser_id, url); 
+            break;
+        case GET_BROWSERS:
+            sendResponse(browsers);
             return sendResponse("ok");
         default:
             console.warn("No handler for external type:", type);
