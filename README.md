@@ -6,14 +6,9 @@ Import the `openWith.xpi` file via the `Install Addon From File...` in `about:ad
 
 To receive messages from your browser, run the Python scripts (runtimes) from the native folder according to your OS.
 
-After creating a browser (native app executable) in the extension, you can request the `browser_id` by calling the `getBrowsers` handle:
+After creating a browser (native app executable) in the extension, you can get the `browser_id` by requesting the `browsers` variable in the `openWith` DevTool console:
 
-```js
-// Firefox
-browser.runtime.sendMessage('openwith@darktrojan.net', { type: 'getBrowsers' })
-```
-
-<img width="1920" height="228" alt="image" src="https://github.com/user-attachments/assets/73151bd5-19f7-4f1e-8f77-949a19dac858" />
+<img width="1920" height="163" alt="image" src="https://github.com/user-attachments/assets/5ae3ea78-4855-40fd-a979-fb1866f14fd4" />
 
 From `vimium-c`:
 
